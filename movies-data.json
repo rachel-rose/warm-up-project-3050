@@ -5,7 +5,7 @@
    "Director": "Damien Chazelle",
    "Rating (out of 10)": 8.5,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 106,
    "Awards (OPTIONAL)": "3 Oscars"
  },
@@ -15,7 +15,7 @@
    "Director": "Frank Darabont",
    "Rating (out of 10)": 9.3,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 142,
    "Awards (OPTIONAL)": "7 Oscars"
  },
@@ -25,7 +25,7 @@
    "Director": "Robert Zemeckis",
    "Rating (out of 10)": 8.8,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 142,
    "Awards (OPTIONAL)": "6 Oscars, 7 Golden Globes"
  },
@@ -35,7 +35,7 @@
    "Director": "David Fincher",
    "Rating (out of 10)": 8.8,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 139,
    "Awards (OPTIONAL)": "1 Oscars"
  },
@@ -45,7 +45,7 @@
    "Director": "Alfred Hitchcock",
    "Rating (out of 10)": 8.5,
    "Genre": "Mystery",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 112,
    "Awards (OPTIONAL)": "4 Oscars, 2 Golden Globes"
  },
@@ -55,7 +55,7 @@
    "Director": "Alfred Hitchcock",
    "Rating (out of 10)": 8.3,
    "Genre": "Mystery",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 128,
    "Awards (OPTIONAL)": "2 Oscars"
  },
@@ -65,7 +65,7 @@
    "Director": "Steven Spielberg",
    "Rating (out of 10)": 8.2,
    "Genre": "Action",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 127,
    "Awards (OPTIONAL)": "3 Oscars, 2 Golden Globes"
  },
@@ -75,8 +75,9 @@
    "Director": "Mark Waters",
    "Rating (out of 10)": 7.1,
    "Genre": "Comedy",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 97
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 97,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "The Boys in the Boat",
@@ -84,16 +85,17 @@
    "Director": "George Clooney",
    "Rating (out of 10)": 7,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 123
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 123,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Inception",
    "Year": 2010,
    "Director": "Christopher Nolan",
    "Rating (out of 10)": 8.8,
-   "Genre": "Sci-Fi",
-   "Would you reccomend it?": "Yes",
+   "Genre": "Sci Fi",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 148,
    "Awards (OPTIONAL)": "4 Oscars"
  },
@@ -103,8 +105,9 @@
    "Director": "John McTiernan",
    "Rating (out of 10)": 8.2,
    "Genre": "Action",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 132
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 132,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "The Intouchables",
@@ -112,17 +115,17 @@
    "Director": "Olivier Nakache",
    "Rating (out of 10)": 8.5,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 112,
    "Awards (OPTIONAL)": "2 Golden Globes"
  },
  {
-   "Movie Name": "WALL-E",
+   "Movie Name": "WALL E",
    "Year": 2008,
    "Director": "Andrew Stanton",
    "Rating (out of 10)": 8.4,
    "Genre": "Adventure",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 98,
    "Awards (OPTIONAL)": "1 Oscars"
  },
@@ -132,8 +135,9 @@
    "Director": "Greta Gerwig",
    "Rating (out of 10)": 6.9,
    "Genre": "Adventure",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 114
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 114,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Up",
@@ -141,7 +145,7 @@
    "Director": "Pete Docter",
    "Rating (out of 10)": 8.3,
    "Genre": "Adventure",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 96,
    "Awards (OPTIONAL)": "2 Oscars"
  },
@@ -151,8 +155,9 @@
    "Director": "Terry Gilliam",
    "Rating (out of 10)": 8.2,
    "Genre": "Comedy",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 91
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 91,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Catch Me If You Can",
@@ -160,7 +165,7 @@
    "Director": "Steven Spielberg",
    "Rating (out of 10)": 8.1,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 141,
    "Awards (OPTIONAL)": "2 Oscars, 4 Golden Globes"
  },
@@ -170,7 +175,7 @@
    "Director": "Brad Bird",
    "Rating (out of 10)": 8.1,
    "Genre": "Adventure",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 111,
    "Awards (OPTIONAL)": "1 Oscar"
  },
@@ -180,17 +185,17 @@
    "Director": "James Mangold",
    "Rating (out of 10)": 8.1,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 152,
    "Awards (OPTIONAL)": "2 Oscars, 3 Golden Globes"
  },
  {
    "Movie Name": "Rocky",
    "Year": 1976,
-   "Director": "John G. Avildsen",
+   "Director": "John G Avildsen",
    "Rating (out of 10)": 8.1,
    "Genre": "Drama",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 120,
    "Awards (OPTIONAL)": "3 Oscars"
  },
@@ -200,7 +205,7 @@
    "Director": "Raine Allen Miller",
    "Rating (out of 10)": 7.2,
    "Genre": "Comedy",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 82,
    "Awards (OPTIONAL)": "2 Golden Globes"
  },
@@ -209,8 +214,8 @@
    "Year": 2018,
    "Director": "Steven Spielberg",
    "Rating (out of 10)": 7.4,
-   "Genre": "Sci-Fi",
-   "Would you reccomend it?": "Yes",
+   "Genre": "Sci Fi",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 140,
    "Awards (OPTIONAL)": "1 Golden Globes"
  },
@@ -220,7 +225,7 @@
    "Director": "Steven Spielberg",
    "Rating (out of 10)": 8.2,
    "Genre": "Adventure",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 127,
    "Awards (OPTIONAL)": "1 Oscars"
  },
@@ -229,8 +234,8 @@
    "Year": 2014,
    "Director": "Christopher Nolan",
    "Rating (out of 10)": 8.7,
-   "Genre": "Sci-Fi",
-   "Would you reccomend it?": "Yes",
+   "Genre": "Sci Fi",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 169,
    "Awards (OPTIONAL)": "1 Oscars"
  },
@@ -240,7 +245,7 @@
    "Director": "Ang Lee",
    "Rating (out of 10)": 7.9,
    "Genre": "Adventure",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 127,
    "Awards (OPTIONAL)": "4 Oscars"
  },
@@ -249,9 +254,10 @@
    "Year": 2018,
    "Director": "Steven DeKnight",
    "Rating (out of 10)": 5.6,
-   "Genre": "Sci-Fi",
-   "Would you reccomend it?": "No",
-   "Duration (mins)": 111
+   "Genre": "Sci Fi",
+   "Would you recommend it?": "No",
+   "Duration (mins)": 111,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "School of Rock",
@@ -259,8 +265,9 @@
    "Director": "Richard Linklater",
    "Rating (out of 10)": 7.2,
    "Genre": "Comedy",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 108
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 108,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "The Other Side of the Door",
@@ -268,8 +275,9 @@
    "Director": "Johannes Roberts",
    "Rating (out of 10)": 5.3,
    "Genre": "Horror",
-   "Would you reccomend it?": "No",
-   "Duration (mins)": 96
+   "Would you recommend it?": "No",
+   "Duration (mins)": 96,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Jurassic World",
@@ -277,18 +285,19 @@
    "Director": "Colin Trevorrow",
    "Rating (out of 10)": 6.9,
    "Genre": "Action",
-   "Would you reccomend it?": "No",
+   "Would you recommend it?": "No",
    "Duration (mins)": 124,
    "Awards (OPTIONAL)": "3 Oscars"
  },
  {
-   "Movie Name": "Shazam!",
+   "Movie Name": "Shazam",
    "Year": 2019,
    "Director": "David Sandberg",
    "Rating (out of 10)": 7,
    "Genre": "Action",
-   "Would you reccomend it?": "No",
-   "Duration (mins)": 132
+   "Would you recommend it?": "No",
+   "Duration (mins)": 132,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Zombeavers",
@@ -296,8 +305,9 @@
    "Director": "Jordan Rubin",
    "Rating (out of 10)": 4.8,
    "Genre": "Comedy",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 77
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 77,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Elvis",
@@ -305,7 +315,7 @@
    "Director": "Baz Luhrmann",
    "Rating (out of 10)": 7.3,
    "Genre": "Biography",
-   "Would you reccomend it?": "No",
+   "Would you recommend it?": "No",
    "Duration (mins)": 159,
    "Awards (OPTIONAL)": "1 Golden Globe"
  },
@@ -315,8 +325,9 @@
    "Director": "Charles Band",
    "Rating (out of 10)": 3.4,
    "Genre": "Horror",
-   "Would you reccomend it?": "No",
-   "Duration (mins)": 70
+   "Would you recommend it?": "No",
+   "Duration (mins)": 70,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Attack of the Killer Tomatoes",
@@ -324,7 +335,7 @@
    "Director": "John De Bello",
    "Rating (out of 10)": 4.6,
    "Genre": "Horror",
-   "Would you reccomend it?": "No",
+   "Would you recommend it?": "No",
    "Duration (mins)": 83,
    "Awards (OPTIONAL)": "1 Golden Globes"
  },
@@ -334,8 +345,9 @@
    "Director": "James Nguyen",
    "Rating (out of 10)": 1.7,
    "Genre": "Horror",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 105
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 105,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Radio Rebel",
@@ -343,8 +355,9 @@
    "Director": "Peter Howitt",
    "Rating (out of 10)": 5.7,
    "Genre": "Comedy",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 85
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 85,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Zapped",
@@ -352,8 +365,9 @@
    "Director": "Peter DeLuise",
    "Rating (out of 10)": 5,
    "Genre": "Comedy",
-   "Would you reccomend it?": "No",
-   "Duration (mins)": 102
+   "Would you recommend it?": "No",
+   "Duration (mins)": 102,
+   "Awards (OPTIONAL)": ""
  },
  {
    "Movie Name": "Midsommar",
@@ -361,7 +375,7 @@
    "Director": "Ari Aster",
    "Rating (out of 10)": 7.1,
    "Genre": "Horror",
-   "Would you reccomend it?": "Yes",
+   "Would you recommend it?": "Yes",
    "Duration (mins)": 148,
    "Awards (OPTIONAL)": "3 Golden Globes"
  },
@@ -371,7 +385,7 @@
    "Director": "Sarah Polley",
    "Rating (out of 10)": 6.9,
    "Genre": "Drama",
-   "Would you reccomend it?": "No",
+   "Would you recommend it?": "No",
    "Duration (mins)": 104,
    "Awards (OPTIONAL)": "1 Oscars"
  },
@@ -381,16 +395,18 @@
    "Director": "Jeffrey Hornaday",
    "Rating (out of 10)": 5.9,
    "Genre": "Comedy",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 110
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 110,
+   "Awards (OPTIONAL)": ""
  },
  {
-   "Movie Name": "G-Force",
+   "Movie Name": "G Force",
    "Year": 2009,
    "Director": "Hoyt Yeatman",
    "Rating (out of 10)": 5.1,
    "Genre": "Action",
-   "Would you reccomend it?": "Yes",
-   "Duration (mins)": 88
+   "Would you recommend it?": "Yes",
+   "Duration (mins)": 88,
+   "Awards (OPTIONAL)": ""
  }
 ]
