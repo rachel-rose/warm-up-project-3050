@@ -1,5 +1,5 @@
 import json
-from db_connection import db_connection
+from authenticate import db_connection
 
 
 def load_data():
