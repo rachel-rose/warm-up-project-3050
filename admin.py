@@ -1,21 +1,8 @@
-import json
-from authenticate import db_connection
+from queries import Work
 
+if __name__ == "__main__":
+    filename = "warm-up-project-3050/movies-data.json" # User will give this as command line arg?
 
-def load_data():
-    jsondata = "../warm-up-project-3050/movies-data.json"
-    uuid = 0
-
-    # Connect to database
-    db = db_connection()
-
-    # Create Movies collection
-    movies_ref = db.collection("Movies")
-
-    # Load json data to firestore db
-    with open(jsondata, 'r') as inFile:
-        data = json.load(inFile)
-
-    for movie in data:
-        uuid += 1
-        movies_ref.document(str(uuid)).set(movie)
+    work = Work()
+    work.clear_data()
+    work.load_data(filename)
