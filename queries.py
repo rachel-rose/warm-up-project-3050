@@ -19,7 +19,6 @@ class Movie:
     @staticmethod
     def from_dict(source):
         movie = Movie(source["name"], source["year"], source["director"], source["rating"], source["genre"], source["recommend"], source["duration"])
-
         if "awards" in source:
             movie.awards = source["awards"]
         else:
@@ -37,6 +36,10 @@ class Work:
         self.db = db_connection()
         self.collection = self.db.collection("Movies")
 
+    @staticmethod
+    def to_movie(source):
+        return Movie.from_dict(source)
+
     def load_data(self, filename):
         jsondata = "../" + filename
 
@@ -49,7 +52,7 @@ class Work:
 
         for movie in data:
             # print(movie)
-            name = movie["Movie Name"].encode("utf-8")
+            name = movie["name"].encode("utf-8")
             uuid = hashlib.shake_256(name).hexdigest(10)
             movies_ref.document(str(uuid)).set(movie)
 
@@ -75,9 +78,25 @@ class Work:
             print(f"No movies with {token} {comparison} {value} :(")
         else:
             for doc in docs:
-                doc_dict = doc.to_dict()
-                print(doc_dict["id"])
-                print(f"{doc_dict}")
 
+                # print(doc_dict["id"])
+                print(doc.to_dict())
+
+    def or_query(self, token, comparison, value):
+        for i in range(len(token)):
+            docs = (
+                self.collection
+                .where(filter=FieldFilter(token[i], comparison[i], value[i]))
+                .get()
+            )
+            if not docs:
+                print(f"No movies with {token} {comparison} {value} :(")
+            else:
+                for doc in docs:
+                    docs.remove(doc)
+                    doc_dict = doc.to_dict()
+
+                    # print(doc_dict["id"])
+                    print(f"{doc_dict}")
 
 
