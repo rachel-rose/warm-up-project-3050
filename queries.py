@@ -70,27 +70,18 @@ class Work:
     def query(self, token, comparison, value):
         # field_path = FieldPath([token])
         docs = (
-            self.collection
-            .where(filter=FieldFilter(token, comparison, value))
-            .get()
-        )
-        if not docs:
-            print(f"No movies with {token} {comparison} {value} :(")
-        else:
-            for doc in docs:
-
-                # print(doc_dict["id"])
-                print(doc.to_dict())
-
-    def or_query(self, token, comparison, value):
-        for i in range(len(token)):
-            docs = (
                 self.collection
-                .where(filter=FieldFilter(token[i], comparison[i], value[i]))
+                .where(filter=FieldFilter(token, comparison, value))
                 .get()
-            )
+        )
+        return docs
+
+    def or_query(self, list):
+        for i in range(len(list)):
+            docs = self.query(list[i][0], list[i][1], list[i][2])
+
             if not docs:
-                print(f"No movies with {token} {comparison} {value} :(")
+                print(f"No movies with xyz :(")
             else:
                 for doc in docs:
                     docs.remove(doc)
@@ -104,16 +95,9 @@ class Work:
             self.query(list[0][0], list[0][1], list[0][2])
 
         elif (len(list)) == 2:
-            docs = (
-                self.collection
-                .where(filter=FieldFilter(list[0][0], list[0][1], list[0][2]))
-                .get()
-            )
-            docs2 = (
-                self.collection
-                .where(filter=FieldFilter(list[1][0], list[1][1], list[1][2]))
-                .get()
-            )
+            docs = self.query(list[0][0], list[0][1], list[0][2])
+            docs2 = self.query(list[1][0], list[1][1], list[1][2])
+
             final = []
 
             for doc in docs:
@@ -123,21 +107,9 @@ class Work:
             self.print_docs(final)
 
         else:
-            docs = (
-                self.collection
-                .where(filter=FieldFilter(list[0][0], list[0][1], list[0][2]))
-                .get()
-            )
-            docs2 = (
-                self.collection
-                .where(filter=FieldFilter(list[1][0], list[1][1], list[1][2]))
-                .get()
-            )
-            docs3 = (
-                self.collection
-                .where(filter=FieldFilter(list[2][0], list[2][1], list[2][2]))
-                .get()
-            )
+            docs = self.query(list[0][0], list[0][1], list[0][2])
+            docs2 = self.query(list[1][0], list[1][1], list[1][2])
+            docs3 = self.query(list[2][0], list[2][1], list[2][2])
 
             final = []
             for doc in docs:
@@ -182,10 +154,23 @@ class Work:
 
     def print_docs(self, docs):
         if not docs:
-            print("Nope")
+            print("Sorry, there are no movies with ")
         for doc in docs:
             #docs.remove(doc)
-            doc_dict = doc.to_dict()
+            doc_dict = self.format_dict(doc.to_dict())
             print(f"{doc_dict}")
 
+    def format_dict(self, source):
+        mystr = ("Title: " + source["name"] + ", Director: " + source["director"] + ", Year: " + str(source["year"])
+                 + ", Rating: " + str(source["rating"]) + ", Genre: " + source["genre"] + ", Duration: "
+                 + str(source["duration"]) + ", Recommend: ")
+        if source["recommend"]:
+            mystr += "Yes"
+        else:
+            mystr += "No"
+
+        if "awards" in source:
+            mystr += ", Awards: " + source["awards"]
+
+        return mystr
 
