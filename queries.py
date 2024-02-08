@@ -99,4 +99,57 @@ class Work:
                     # print(doc_dict["id"])
                     print(f"{doc_dict}")
 
+    def and_query(self, list):
+        if (len(list)) == 1:
+            self.query(list[0][0], list[0][1], list[0][2])
 
+        elif (len(list)) == 2:
+            docs = (
+                self.collection
+                .where(filter=FieldFilter(list[0][0], list[0][1], list[0][2]))
+                .get()
+            )
+            docs2 = (
+                self.collection
+                .where(filter=FieldFilter(list[1][0], list[1][1], list[1][2]))
+                .get()
+            )
+            final = []
+
+            for doc in docs:
+                if doc in docs2:
+                    final.append(doc)
+
+            self.print_docs(final)
+
+        else:
+            docs = (
+                self.collection
+                .where(filter=FieldFilter(list[0][0], list[0][1], list[0][2]))
+                .get()
+            )
+            docs2 = (
+                self.collection
+                .where(filter=FieldFilter(list[1][0], list[1][1], list[1][2]))
+                .get()
+            )
+            docs3 = (
+                self.collection
+                .where(filter=FieldFilter(list[2][0], list[2][1], list[2][2]))
+                .get()
+            )
+
+            final = []
+            for doc in docs:
+                if doc in docs2 and doc in docs3:
+                    final.append(doc)
+
+            self.print_docs(final)
+
+    def print_docs(self, docs):
+        if not docs:
+            print("Nope")
+        for doc in docs:
+            #docs.remove(doc)
+            doc_dict = doc.to_dict()
+            print(f"{doc_dict}")
