@@ -81,7 +81,7 @@ class Work:
             docs = self.query(list[i][0], list[i][1], list[i][2])
 
             if not docs:
-                print(f"No movies with xyz :(")
+                print(f"No movies found")
             else:
                 for doc in docs:
                     docs.remove(doc)
@@ -92,7 +92,8 @@ class Work:
 
     def and_query(self, list):
         if (len(list)) == 1:
-            self.query(list[0][0], list[0][1], list[0][2])
+            docs = self.query(list[0][0], list[0][1], list[0][2])
+            self.print_docs(docs)
 
         elif (len(list)) == 2:
             docs = self.query(list[0][0], list[0][1], list[0][2])
@@ -153,7 +154,7 @@ class Work:
 
     def print_docs(self, docs):
         if not docs:
-            print("Sorry, there are no movies with ")
+            print("Sorry, no movies found")
         for doc in docs:
             #docs.remove(doc)
             doc_dict = self.format_dict(doc.to_dict())
@@ -168,7 +169,7 @@ class Work:
         else:
             mystr += "No"
 
-        if "awards" in source:
+        if source["awards"] is not None:
             mystr += ", Awards: " + source["awards"]
 
         return mystr
