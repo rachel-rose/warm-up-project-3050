@@ -118,6 +118,40 @@ class Work:
 
             self.print_docs(final)
 
+    # of query
+    # user types in "Awards OF title name"
+    # Not given the option to type anything other than film name
+    # takes in list like so ['token','comparison', 'field']
+    def of_query(self, list):
+        # vars
+        name = list[0]
+        comp = list[1]
+        title = list[2]
+        # query for movie
+        docs = (
+            self.collection
+            .where(filter=FieldFilter(name, comp, title))
+            .get()
+        )
+        for doc in docs:
+            doc_dict = doc.to_dict()
+        # check if movie has an awards and
+        # print corresponding statement
+        final = []
+        if doc_dict["awards"] != "":
+            final.append(doc_dict["awards"])
+            print(final)
+        else:
+            print(f"The movie", title, "has no awards.")
+
+
+
+    # if not docs:
+    #     print(f"No awards for the movie: ", list[0])
+    # else:
+    #     self.print_docs(docs)
+
+
     def print_docs(self, docs):
         if not docs:
             print("Sorry, there are no movies with ")
@@ -139,3 +173,4 @@ class Work:
             mystr += ", Awards: " + source["awards"]
 
         return mystr
+
