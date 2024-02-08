@@ -124,13 +124,12 @@ class Work:
     # takes in list like so ['token','comparison', 'field']
     def of_query(self, list):
         # vars
-        name = list[0]
-        comp = list[1]
-        title = list[2]
+        attribute = list[0]
+        title = list[1]
         # query for movie
         docs = (
             self.collection
-            .where(filter=FieldFilter(name, comp, title))
+            .where(filter=FieldFilter("name", "==", title))
             .get()
         )
         for doc in docs:
@@ -138,8 +137,8 @@ class Work:
         # check if movie has an awards and
         # print corresponding statement
         final = []
-        if doc_dict["awards"] != "":
-            final.append(doc_dict["awards"])
+        if doc_dict[attribute] != "":
+            final.append(doc_dict[attribute])
             print(f"The movie", title, "has", final[0])
         else:
             print(f"The movie", title, "has no awards.")
