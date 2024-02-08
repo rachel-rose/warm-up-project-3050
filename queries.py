@@ -139,7 +139,7 @@ class Work:
         final = []
         if doc_dict[attribute] != "":
             final.append(doc_dict[attribute])
-            print(f"The movie", title, "has", final[0])
+            print(final[0])
         else:
             print(f"The movie", title, "has no awards.")
 
