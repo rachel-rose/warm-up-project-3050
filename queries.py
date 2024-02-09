@@ -168,8 +168,7 @@ class Work:
             mystr += "Yes"
         else:
             mystr += "No"
-
-        if source["awards"] is not None:
+        if source["awards"] != "":
             mystr += ", Awards: " + source["awards"]
 
         return mystr
