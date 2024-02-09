@@ -26,7 +26,7 @@ comparisons = ["and", "or", "of", "==", "<", ">", "<=", ">="]
 
 
 #query_test_2 = "token == value and token2 <= value2"
-results = (query.parse_string(user_query))
+results = (query.parse_string(user_query, parse_all=True))
 for result in results:
     print(result)
 
