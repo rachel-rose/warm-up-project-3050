@@ -121,7 +121,7 @@ def is_it_a_num(input_str):
 
 def input_valid_token(input_str):
     #tokens, comparisons, values
-    token_list= ["year", "name", "director", "rating", "genre", "length", "recommended", "awards"]
+    token_list= ["year", "name", "director", "rating", "genre", "duration", "recommend", "awards"]
     for token in token_list:
         if input_str == token:
             return True
