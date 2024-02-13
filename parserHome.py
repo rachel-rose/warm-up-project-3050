@@ -4,6 +4,7 @@ from authenticate import db_connection
 # Global variable
 keep_running = True
 
+
 def parse_message(input_string):
     # Ways to compare values for a given token
     comparisons = Literal("==") | Literal("<=") | Literal(">=") | Literal("<") | Literal(">") | Literal("of")
@@ -98,7 +99,8 @@ def parse_message(input_string):
     except:
         #return error
         print_help()
-    
+
+
 def print_help():
     print("""************************************************\n************************************************\n\nTry using the following format: token comparison value \nFor example: year > 2020\nOr: name == "Rocky"
 \nToken (category name): name, year, director, rating, genre, length, recommended, awards
@@ -111,6 +113,7 @@ Common formatting errors to avoid:
 \t- When searching by values (a specific movie name, genre, etc..), it must be in double quotation marks 
 \t- Integers and floats do not have to be in quotation marks\n\n************************************************\n************************************************\n""") 
 
+
 #make sure that when a number is put in, we convert it to a float
 def is_it_a_num(input_str):
     is_num = True
@@ -119,7 +122,8 @@ def is_it_a_num(input_str):
             is_num= False
     if is_num == True:
         input_str = float(input_str)
-     return input_str
+    return input_str
+
 
 def input_valid_token(input_str):
     #tokens, comparisons, values
@@ -128,6 +132,7 @@ def input_valid_token(input_str):
         if input_str == token:
             return True
     return False
+
 
 def main():
     # Call admin file with json file name

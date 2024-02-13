@@ -110,35 +110,38 @@ class Work:
     # The and_query function takes in a list of up to three token, comparison, value groups and
     # prints each document that satisfies ALL of the given requirements
     def and_query(self, list):
-        # One query given
-        if (len(list)) == 1:
-            docs = self.query(list[0][0], list[0][1], list[0][2])
-            self.print_docs(docs)
-
-        # Two queries given
-        elif (len(list)) == 2:
-            docs = self.query(list[0][0], list[0][1], list[0][2])
-            docs2 = self.query(list[1][0], list[1][1], list[1][2])
-
-            final = []
-            for doc in docs:
-                if doc in docs2:
-                    final.append(doc)
-
-            self.print_docs(final)
-
-        # Three (max) queries given
+        if not self.check_token(list):
+            print_help()
         else:
-            docs = self.query(list[0][0], list[0][1], list[0][2])
-            docs2 = self.query(list[1][0], list[1][1], list[1][2])
-            docs3 = self.query(list[2][0], list[2][1], list[2][2])
+            # One query given
+            if (len(list)) == 1:
+                docs = self.query(list[0][0], list[0][1], list[0][2])
+                self.print_docs(docs)
 
-            final = []
-            for doc in docs:
-                if doc in docs2 and doc in docs3:
-                    final.append(doc)
+            # Two queries given
+            elif (len(list)) == 2:
+                docs = self.query(list[0][0], list[0][1], list[0][2])
+                docs2 = self.query(list[1][0], list[1][1], list[1][2])
 
-            self.print_docs(final)
+                final = []
+                for doc in docs:
+                    if doc in docs2:
+                        final.append(doc)
+
+                self.print_docs(final)
+
+            # Three (max) queries given
+            else:
+                docs = self.query(list[0][0], list[0][1], list[0][2])
+                docs2 = self.query(list[1][0], list[1][1], list[1][2])
+                docs3 = self.query(list[2][0], list[2][1], list[2][2])
+
+                final = []
+                for doc in docs:
+                    if doc in docs2 and doc in docs3:
+                        final.append(doc)
+
+                self.print_docs(final)
 
     # The of_query function takes in a list with two items: attribute and movie title
     # The function finds the movie with the given title then prints the desired attribute
@@ -188,7 +191,7 @@ class Work:
     # example rating == "8.2" return a bad output
     def check_token(self, list):
         for i in range(len(list)):
-            if list[i][0] == 'year' or 'rating' or ' duration':
+            if list[i][0] == 'year' or 'rating' or 'duration':
                 if isinstance(list[i][2], str):
                     # return bool
                     return False
