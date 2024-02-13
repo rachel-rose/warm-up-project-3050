@@ -113,8 +113,9 @@ Common formatting errors to avoid:
 
 #make sure that when a number is put in, we convert it to a float
 def is_it_a_num(input_str):
-    if input_str.isdigit():
-        input_str = float(input_str)
+    for i in input_str:
+        if i.isdigit() | i== ".":
+            input_str = float(input_str)
         return input_str
     else:
         return input_str
