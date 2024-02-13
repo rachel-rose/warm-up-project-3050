@@ -1,85 +1,108 @@
-from pyparsing import Word, alphas, nums, one_of, Optional, alphanums, QuotedString, Group
+# from pyparsing import Word, alphas, nums, alphanums, Literal, QuotedString
+# from authenticate import db_connection
 
-example_query = Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"')
-#example_query = Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"') ^ Word(alphas) + Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"') ^ Word(alphas) + Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"') + Word(alphas) + Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"') 
+# # Global variable
+# keep_running = True
 
-example_compound_query = Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"') + Word(alphas) + Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"')
+# def parse_message(input_string):
+#     # Ways to compare values for a given token
+#     comparisons = Literal("==") | Literal("<=") | Literal(">=") | Literal("<") | Literal(">") | Literal("of")
+#     value = QuotedString('"') | Word(nums)
+#     # Acceptible queries
+#     # example_query = Word(alphas) + comparisons + Word(alphanums + '"')
+#     example_query = Word(alphas) + comparisons + value
+#     example_and_compound_query = Word(alphas) + comparisons + Word(alphanums + '"') + Literal("and") + Word(alphas) + comparisons + Word(alphanums + '"')
+#     example_or_compound_query = Word(alphas) + comparisons + Word(alphanums + '"') + Literal("or") + Word(alphas) + comparisons + Word(alphanums + '"')
+#     example_and_double_compound_query = example_and_compound_query + Literal("and") + Word(alphas) + comparisons + Word(alphanums + '"')
+#     example_or_double_compound_query = example_or_compound_query + Literal("or") + Word(alphas) + comparisons + Word(alphanums + '"')
 
-#query = example_query + Optional(example_compound_query)  
-query = example_query ^ example_compound_query 
-greet = Word(alphas) + "," + Word(alphas) + "!"
+#     # Expected query format
+#     query = example_query ^ example_and_compound_query ^ example_or_compound_query ^ example_and_double_compound_query ^ example_or_double_compound_query ^ Literal("help") ^ Literal("quit")
+    
+#     try:
+#         results = (query.parse_string(input_string, parse_all=True))
+#         query_size = len(results)
 
-user_query = input("Enter a query string in the format of 'token comparison value' ")
-hello = "Hello, World!"
-#print(hello, "->", greet.parse_string(hello))
-# query = Word(alphas) + Word(one_of) + Word(alphas)
-query_test = "token == value"
-# print(query_test, "->", query2.parse_string(query_test))
-# example_query = "genre == horror"
-# print(example_query, "->", query.parse_string(example_query))
-comparisons = ["and", "or", "of", "==", "<", ">", "<=", ">="]
-# comparison = Word(alphas)["=="]
-# query3 = Word(alphas) + comparison + Word(alphas)
-# print(query_test, "->", query3.parse_string(query_test))
-#query = Word(alphas) + Word("of" + "==" + "<" + ">" + "<=" + ">=") + Word(alphanums + '"') + Optional(Optional(Word(alphas)) + Optional(Word(alphanums)) + Optional(Word("of" + "==" + "<" + ">" + "<=" + ">=")) + Optional(Word(alphanums + '"')))
-#print(query_test, "->", query.parse_string(query_test))
+#         # Single string commands
+#         if(query_size == 1):
+#             if(results[0] == "quit"):
+#                 global keep_running 
+#                 keep_running = False
+#             elif(results[0] == "help"):
+#                 print_help()
 
+#         # Simply query commands
+#         elif(query_size == 3):
+#             # Check if the token is valid
+#             # TODO: Call input_valid_token function
 
-#query_test_2 = "token == value and token2 <= value2"
-results = (query.parse_string(user_query))
-for result in results:
-    print(result)
+#             # Check if the value field is numeric
+#             # TODO: Call is it a number
 
+#             # Check if it is an 'of' query
+#             if(results[1] == "of"):
+#                 # Call the of query function
+#                 print("of query")
+#             else:
+#                 print("success")
 
-# def get_input():
-#     valid_input = False
-#     while(not valid_input):
-#         user_query = input("Enter a query string in the format of 'token comparison value' : ")
-#         word_count = 0
-#         user_query = user_query.split()
-#         word_count = len(user_query)
+#         # Compound query commands
+#         elif(query_size == 7):
+#             # Check if the token is valid at results[0], results[4]
+#             # TODO: Call input_valid_token function
+            
+#             # Check if the value field is numeric at results[2], results[6]
+#             # TODO: Call is it a number
+
+#             # Check if it is an 'of' query
+#             if(results[1] == "of" or results[5] == "of"):
+#                 # Throw exception
+#                 print("No compound 'of' queries ")
+#             elif(results[3] == 'or'):
+#                 # Call 'or' query
+#                 print("or query")
+#             else:
+#                 # Call normal query
+#                 print("success")
         
-#         if(word_count % 3 == 0)
-#         {
-#             # call 1 query parsing
-#         }
+#         # Double compound query commands
+#         else:
+#             # Check if the token is valid at results[0], results[4], results[9]
+#             # TODO: Call input_valid_token function
+            
+#             # Check if the value field is numeric at results[2], results[6], results[11]
+#             # TODO: Call is it a number
 
+#             # Check if it is an 'of' query
+#             if(results[1] == "of" or results[5] == "of" or results[9]):
+#                 # Throw exception
+#                 print("No compound 'of' queries ")
+#             elif(results[3] == 'or'):
+#                 # Call 'or' query
+#                 print("or query")
+#             else:
+#                 # Call normal query
+#                 print("success")
+#     except:
+#         #return error
+#         print_help()
+    
+# def print_help():
+#     print("""************************************************\n************************************************\n\nTry using the following format: token comparison value \nFor example: year > 2020\nOr: name == "Rocky"
+# \nToken (category name): name, year, director, rating, genre, length, recommended, awards
+# Comparison: >, <, ==, >=, <=, of
+# Value:  “The Fast and the Furious”\n
+# Common formatting errors to avoid: 
+# \t- Tokens (catergory names) should not be capialized or in quotes 
+# \t- When searching by values (a specific movie name, genre, etc..), it must be in double quotation marks 
+# \t- Integers and floats do not have to be in quotation marks\n\n************************************************\n************************************************\n""") 
 
+# def main():
+#     # Call admin file with json file name
+#     db_connection()
+    
+#     while(keep_running):
+#         user_query = input("Enter a query string in the format of 'token comparison value' ")
+#         parse_message(user_query)
 
-
-
-
-print("*&*******")
-count = 0
-tokens = []
-comparisons = []
-values = []
-for value in results:
-    if(count % 4 == 0):
-        tokens.append(results[count])
-    elif(count % 4 == 1):
-        comparisons.append(results[count])
-    elif(count % 4 == 2):
-        # If string with quotes
-        if(value.isdigit() == False):
-            value_string = results[count][1:-1]
-            values.append(value_string)
-        else:
-            values.append(results[count])
-        # Else
-        # values.append(results[2][count])
-    # The value is an "and" or "or" if it reaches this point without going into an if statement.
-    count += 1
-
-token_string = "List Parameter 1: "
-for token in tokens:
-    token_string += token + " "
-comparison_string = "List Parameter 2: "
-for comparison in comparisons:
-    comparison_string += comparison + " "
-value_string = "List Parameter 3: "
-for value in values:
-    value_string += value + " "
-print(token_string)
-print(comparison_string)
-print(value_string)
+# main()
