@@ -11,10 +11,10 @@ def parse_message(input_string):
     # Acceptible queries
     # example_query = Word(alphas) + comparisons + Word(alphanums + '"')
     example_query = Word(alphas) + comparisons + value
-    example_and_compound_query = Word(alphas) + comparisons + Word(alphanums + '"') + Literal("and") + Word(alphas) + comparisons + Word(alphanums + '"')
-    example_or_compound_query = Word(alphas) + comparisons + Word(alphanums + '"') + Literal("or") + Word(alphas) + comparisons + Word(alphanums + '"')
-    example_and_double_compound_query = example_and_compound_query + Literal("and") + Word(alphas) + comparisons + Word(alphanums + '"')
-    example_or_double_compound_query = example_or_compound_query + Literal("or") + Word(alphas) + comparisons + Word(alphanums + '"')
+    example_and_compound_query = Word(alphas) + comparisons + value + Literal("and") + Word(alphas) + comparisons + value
+    example_or_compound_query = Word(alphas) + comparisons + value + Literal("or") + Word(alphas) + comparisons + value
+    example_and_double_compound_query = example_and_compound_query + Literal("and") + Word(alphas) + comparisons + value
+    example_or_double_compound_query = example_or_compound_query + Literal("or") + Word(alphas) + comparisons + value
 
     # Expected query format
     query = example_query ^ example_and_compound_query ^ example_or_compound_query ^ example_and_double_compound_query ^ example_or_double_compound_query ^ Literal("help") ^ Literal("quit")
