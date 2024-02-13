@@ -91,11 +91,16 @@ class Work:
     def or_query(self, list):
         for i in range(len(list)):
             docs = self.query(list[i][0], list[i][1], list[i][2])
-
             if not docs:
-                print(f"No movies found")
+                output = "Sorry, no movies found with "
+                #for i in range(len(list)):
+                    #output += item[0] + " " + item[1] + " " + item[2]
+                    #if
+                    #output += " or "
+                print(output)
             else:
                 for doc in docs:
+                    # Remove duplicate documents
                     docs.remove(doc)
                     doc_dict = doc.to_dict()
 
@@ -161,7 +166,7 @@ class Work:
     # Takes in a collection of documents and prints them to the console
     def print_docs(self, docs):
         if not docs:
-            print("Sorry, no movies found")
+            print("Sorry, no movies found.")
         for doc in docs:
             doc_dict = self.format_dict(doc.to_dict())
             print(f"{doc_dict}")
@@ -170,11 +175,8 @@ class Work:
     def format_dict(self, source):
         mystr = ("Title: " + source["name"] + ", Director: " + source["director"] + ", Year: " + str(source["year"])
                  + ", Rating: " + str(source["rating"]) + ", Genre: " + source["genre"] + ", Duration: "
-                 + str(source["duration"]) + ", Recommend: ")
-        if source["recommend"]:
-            mystr += "Yes"
-        else:
-            mystr += "No"
+                 + str(source["duration"]) + ", Recommend: " + str((source["recommend"])))
+
         if source["awards"] != "":
             mystr += ", Awards: " + source["awards"]
 
