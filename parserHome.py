@@ -1,8 +1,10 @@
 from pyparsing import Word, alphas, nums, alphanums, Literal, QuotedString
 from authenticate import db_connection
+from queries import Work
 
 # Global variable
 keep_running = True
+query_machine = Work()
 
 def parse_message(input_string):
     # Ways to compare values for a given token
@@ -37,14 +39,17 @@ def parse_message(input_string):
             if(input_valid_token(results[0])):
                 # Check if the value field is numeric
                 results[2] = is_it_a_num(results[2])
-                print(type(results[2]))
                 # Check if it is an 'of' query
                 if(results[1] == "of"):
+                    #query_array = [results[0], results[2]]
                     # Call the of query function
-                    print("of query")
+                    query_machine.of_query(results)
+
+                    #print("of query")
                 else:
+                    query_array = [[results[0], results[1], results[2]]]
                     # Call query
-                    print("success")
+                    query_machine.and_query(query_array)
             else:
                 # Throw exception
                 print_help()
@@ -63,7 +68,9 @@ def parse_message(input_string):
                     # Throw exception
                     print("No compound 'of' queries ")
                 elif(results[3] == 'or'):
+                    query_array = [[results[0], results[1], results[2]],[results[4],results[5],results[6]]]
                     # Call 'or' query
+                    query_machine.or_query(query_array)
                     print("or query")
                 else:
                     # Call normal query
@@ -119,7 +126,7 @@ def is_it_a_num(input_str):
             is_num= False
     if is_num == True:
         input_str = float(input_str)
-     return input_str
+    return input_str
 
 def input_valid_token(input_str):
     #tokens, comparisons, values
@@ -131,7 +138,7 @@ def input_valid_token(input_str):
 
 def main():
     # Call admin file with json file name
-    db_connection()
+    #db_connection()
     
     while(keep_running):
         user_query = input("Enter a query string in the format of 'token comparison value' ")
