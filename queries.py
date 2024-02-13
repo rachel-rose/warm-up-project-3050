@@ -81,7 +81,7 @@ class Work:
             docs = self.query(list[i][0], list[i][1], list[i][2])
 
             if not docs:
-                print(f"No movies with xyz :(")
+                print(f"No movies found")
             else:
                 for doc in docs:
                     docs.remove(doc)
@@ -92,7 +92,8 @@ class Work:
 
     def and_query(self, list):
         if (len(list)) == 1:
-            self.query(list[0][0], list[0][1], list[0][2])
+            docs = self.query(list[0][0], list[0][1], list[0][2])
+            self.print_docs(docs)
 
         elif (len(list)) == 2:
             docs = self.query(list[0][0], list[0][1], list[0][2])
@@ -124,13 +125,12 @@ class Work:
     # takes in list like so ['token','comparison', 'field']
     def of_query(self, list):
         # vars
-        name = list[0]
-        comp = list[1]
-        title = list[2]
+        attribute = list[0]
+        title = list[1]
         # query for movie
         docs = (
             self.collection
-            .where(filter=FieldFilter(name, comp, title))
+            .where(filter=FieldFilter("name", "==", title))
             .get()
         )
         for doc in docs:
@@ -138,9 +138,9 @@ class Work:
         # check if movie has an awards and
         # print corresponding statement
         final = []
-        if doc_dict["awards"] != "":
-            final.append(doc_dict["awards"])
-            print(final)
+        if doc_dict[attribute] != "":
+            final.append(doc_dict[attribute])
+            print(final[0])
         else:
             print(f"The movie", title, "has no awards.")
 
@@ -154,7 +154,7 @@ class Work:
 
     def print_docs(self, docs):
         if not docs:
-            print("Sorry, there are no movies with ")
+            print("Sorry, no movies found")
         for doc in docs:
             #docs.remove(doc)
             doc_dict = self.format_dict(doc.to_dict())
@@ -168,8 +168,7 @@ class Work:
             mystr += "Yes"
         else:
             mystr += "No"
-
-        if "awards" in source:
+        if source["awards"] != "":
             mystr += ", Awards: " + source["awards"]
 
         return mystr
