@@ -7,7 +7,7 @@ keep_running = True
 def parse_message(input_string):
     # Ways to compare values for a given token
     comparisons = Literal("==") | Literal("<=") | Literal(">=") | Literal("<") | Literal(">") | Literal("of")
-    value = QuotedString('"') | Word(nums)
+    value = QuotedString('"') | Word('.' + nums)
     # Acceptible queries
     # example_query = Word(alphas) + comparisons + Word(alphanums + '"')
     example_query = Word(alphas) + comparisons + value
@@ -34,67 +34,67 @@ def parse_message(input_string):
         # Simply query commands
         elif(query_size == 3):
             # Check if the token is valid
-            # TODO: Call input_valid_token function
-            input_valid_token(results[0])
-
-            # Check if the value field is numeric
-            # TODO: Call is it a number
-            is_it_a_num(results[2])
-
-            # Check if it is an 'of' query
-            if(results[1] == "of"):
-                # Call the of query function
-                print("of query")
+            if(input_valid_token(results[0])):
+                # Check if the value field is numeric
+                results[2] = is_it_a_num(results[2])
+                print(type(results[2]))
+                # Check if it is an 'of' query
+                if(results[1] == "of"):
+                    # Call the of query function
+                    print("of query")
+                else:
+                    # Call query
+                    print("success")
             else:
-                print("success")
+                # Throw exception
+                print_help()
 
         # Compound query commands
         elif(query_size == 7):
             # Check if the token is valid at results[0], results[4]
-            # TODO: Call input_valid_token function
-            input_valid_token(results[0])
-            input_valid_token(results[4])
+            if(input_valid_token(results[0] and input_valid_token(results[4]))):
             
-            # Check if the value field is numeric at results[2], results[6]
-            # TODO: Call is it a number
-            is_it_a_num(results[2])
-            is_it_a_num(results[6])
+                # Check if the value field is numeric at results[2], results[6]
+                results[2] = is_it_a_num(results[2])
+                results[6] = is_it_a_num(results[6])
 
-            # Check if it is an 'of' query
-            if(results[1] == "of" or results[5] == "of"):
-                # Throw exception
-                print("No compound 'of' queries ")
-            elif(results[3] == 'or'):
-                # Call 'or' query
-                print("or query")
+                # Check if it is an 'of' query
+                if(results[1] == "of" or results[5] == "of"):
+                    # Throw exception
+                    print("No compound 'of' queries ")
+                elif(results[3] == 'or'):
+                    # Call 'or' query
+                    print("or query")
+                else:
+                    # Call normal query
+                    print("success")
             else:
-                # Call normal query
-                print("success")
+                # Throw exception
+                print_help()
         
         # Double compound query commands
         else:
-            # Check if the token is valid at results[0], results[4], results[9]
-            # TODO: Call input_valid_token function
-            input_valid_token(results[0])
-            input_valid_token(results[4])
-            input_valid_token(results[8])
-            
-            # Check if the value field is numeric at results[2], results[6], results[11]
-            # TODO: Call is it a number
-            is_it_a_num(results[2])
-            is_it_a_num(results[6])
-            is_it_a_num(results[10])
+            # Check if the token is valid at results[0], results[4], results[8]
+            if(input_valid_token(results[0]) and input_valid_token(results[4] and input_valid_token(results[8]))):
+               
+                # Check if the value field is numeric at results[2], results[6], results[10]
+                results[2] = is_it_a_num(results[2])
+                results[6] = is_it_a_num(results[6])
+                results[10] = is_it_a_num(results[10])
 
-            # Check if it is an 'of' query
-            if(results[1] == "of" or results[5] == "of" or results[9]):
-                # Throw exception
-                print("No compound 'of' queries ")
-            elif(results[3] == 'or'):
-                # Call 'or' query
-                print("or query")
+                # Check if it is an 'of' query
+                if(results[1] == "of" or results[5] == "of" or results[9]):
+                    # Throw exception
+                    print("No compound 'of' queries ")
+                elif(results[3] == 'or'):
+                    # Call 'or' query
+                    print("or query")
+                else:
+                    # Call normal query
+                    print("success")
             else:
-                # Call normal query
-                print("success")
+                # Throw exception
+                print_help()
     except:
         #return error
         print_help()
@@ -115,6 +115,8 @@ Common formatting errors to avoid:
 def is_it_a_num(input_str):
     if input_str.isdigit():
         input_str = float(input_str)
+        return input_str
+    else:
         return input_str
 
 def input_valid_token(input_str):
