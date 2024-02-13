@@ -35,9 +35,11 @@ def parse_message(input_string):
         elif(query_size == 3):
             # Check if the token is valid
             # TODO: Call input_valid_token function
+            input_valid_token(results[0])
 
             # Check if the value field is numeric
             # TODO: Call is it a number
+            is_it_a_num(results[2])
 
             # Check if it is an 'of' query
             if(results[1] == "of"):
@@ -50,9 +52,13 @@ def parse_message(input_string):
         elif(query_size == 7):
             # Check if the token is valid at results[0], results[4]
             # TODO: Call input_valid_token function
+            input_valid_token(results[0])
+            input_valid_token(results[4])
             
             # Check if the value field is numeric at results[2], results[6]
             # TODO: Call is it a number
+            is_it_a_num(results[2])
+            is_it_a_num(results[6])
 
             # Check if it is an 'of' query
             if(results[1] == "of" or results[5] == "of"):
@@ -69,9 +75,15 @@ def parse_message(input_string):
         else:
             # Check if the token is valid at results[0], results[4], results[9]
             # TODO: Call input_valid_token function
+            input_valid_token(results[0])
+            input_valid_token(results[4])
+            input_valid_token(results[8])
             
             # Check if the value field is numeric at results[2], results[6], results[11]
             # TODO: Call is it a number
+            is_it_a_num(results[2])
+            is_it_a_num(results[6])
+            is_it_a_num(results[10])
 
             # Check if it is an 'of' query
             if(results[1] == "of" or results[5] == "of" or results[9]):
@@ -93,9 +105,25 @@ def print_help():
 Comparison: >, <, ==, >=, <=, of
 Value:  “The Fast and the Furious”\n
 Common formatting errors to avoid: 
-\t- Tokens (catergory names) should not be capialized or in quotes 
+\t- The \"of\" keyword should only be used proceding a specific movie name. ex: awards of \"movie name\" and cannot be a compound query\n
+\t- You cannot put \"and\" and \"or\" in the same query\n
+\t- Tokens (category names) should not be capitalized or in quotes 
 \t- When searching by values (a specific movie name, genre, etc..), it must be in double quotation marks 
 \t- Integers and floats do not have to be in quotation marks\n\n************************************************\n************************************************\n""") 
+
+#make sure that when a number is put in, we convert it to a float
+def is_it_a_num(input_str):
+    if input_str.isdigit():
+        input_str = float(input_str)
+        return input_str
+
+def input_valid_token(input_str):
+    #tokens, comparisons, values
+    token_list= ["year", "name", "director", "rating", "genre", "length", "recommended", "awards"]
+    for token in token_list:
+        if input_str == token:
+            return True
+    return False
 
 def main():
     # Call admin file with json file name
