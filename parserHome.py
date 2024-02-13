@@ -113,11 +113,13 @@ Common formatting errors to avoid:
 
 #make sure that when a number is put in, we convert it to a float
 def is_it_a_num(input_str):
-    if input_str.isdigit():
+    is_num = True
+    for i in input_str:
+        if i.isalpha() :
+            is_num= False
+    if is_num == True:
         input_str = float(input_str)
-        return input_str
-    else:
-        return input_str
+     return input_str
 
 def input_valid_token(input_str):
     #tokens, comparisons, values
