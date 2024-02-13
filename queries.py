@@ -5,6 +5,7 @@ import hashlib
 
 
 class Movie:
+    # Initializes a Movie object with the given parameters
     def __init__(self, name, year, director, rating, genre, recommend, duration, awards):
         self.name = name
         self.year = year
@@ -15,7 +16,7 @@ class Movie:
         self.duration = duration
         self.awards = awards
 
-    # Turn data from dict to Movies object
+    # Converts dictionary to Movie object
     @staticmethod
     def from_dict(source):
         movie = Movie(source["name"], source["year"], source["director"], source["rating"], source["genre"], source["recommend"], source["duration"])
@@ -26,20 +27,24 @@ class Movie:
 
         return movie
 
+    # Returns a string representation of a Movie object
     def __repr__(self):
         return f"Movie:\nTitle = {self.name}\nYear = {self.year}\nDirector = {self.director}\nRating = {self.rating}\nGenre = {self.genre}\nRecommend = {self.recommend}\nDuration = {self.duration}\nAwards = {self.awards}"
 
 
 # This is the class actually connected to the db
 class Work:
+    # Initializes a Work object and starts database connection to the Movies collection
     def __init__(self):
         self.db = db_connection()
         self.collection = self.db.collection("Movies")
 
+    # Converts a dictionary to a Movie object
     @staticmethod
     def to_movie(source):
         return Movie.from_dict(source)
 
+    # Takes in a json file and loads the given data into a Google Cloud Firestore database
     def load_data(self, filename):
         jsondata = "../" + filename
 
@@ -56,6 +61,7 @@ class Work:
             uuid = hashlib.shake_256(name).hexdigest(10)
             movies_ref.document(str(uuid)).set(movie)
 
+    # Deletes all data from the Movies collection
     def clear_data(self):
         docs = (
             self.collection.list_documents()
@@ -64,11 +70,15 @@ class Work:
         for doc in docs:
             doc.delete()
 
+    # Takes in the ID of a document and a key:value pair then updates the given
+    # key in that document with the given value
     def update(self, id, key, value):
         self.collection.document(id).update({key: value})
 
+    # This is a helper function for the other query functions. It takes in a token (key)
+    # a comparison operator, and a value, then searches the collection for all documents
+    # with the given requirements and returns a subcollection of documents
     def query(self, token, comparison, value):
-        # field_path = FieldPath([token])
         docs = (
                 self.collection
                 .where(filter=FieldFilter(token, comparison, value))
@@ -76,6 +86,8 @@ class Work:
         )
         return docs
 
+    # The or_query function takes in a list of up to three token, comparison, value groups and
+    # prints each document that satisfies ANY of the given requirements
     def or_query(self, list):
         for i in range(len(list)):
             docs = self.query(list[i][0], list[i][1], list[i][2])
@@ -90,23 +102,27 @@ class Work:
                     # print(doc_dict["id"])
                     print(f"{doc_dict}")
 
+    # The and_query function takes in a list of up to three token, comparison, value groups and
+    # prints each document that satisfies ALL of the given requirements
     def and_query(self, list):
+        # One query given
         if (len(list)) == 1:
             docs = self.query(list[0][0], list[0][1], list[0][2])
             self.print_docs(docs)
 
+        # Two queries given
         elif (len(list)) == 2:
             docs = self.query(list[0][0], list[0][1], list[0][2])
             docs2 = self.query(list[1][0], list[1][1], list[1][2])
 
             final = []
-
             for doc in docs:
                 if doc in docs2:
                     final.append(doc)
 
             self.print_docs(final)
 
+        # Three (max) queries given
         else:
             docs = self.query(list[0][0], list[0][1], list[0][2])
             docs2 = self.query(list[1][0], list[1][1], list[1][2])
@@ -119,15 +135,13 @@ class Work:
 
             self.print_docs(final)
 
-    # of query
-    # user types in "Awards OF title name"
-    # Not given the option to type anything other than film name
-    # takes in list like so ['token','comparison', 'field']
+    # The of_query function takes in a list with two items: attribute and movie title
+    # The function finds the movie with the given title then prints the desired attribute
     def of_query(self, list):
-        # vars
         attribute = list[0]
         title = list[1]
-        # query for movie
+
+        # Get desired movie and convert to dictionary
         docs = (
             self.collection
             .where(filter=FieldFilter("name", "==", title))
@@ -135,31 +149,24 @@ class Work:
         )
         for doc in docs:
             doc_dict = doc.to_dict()
-        # check if movie has an awards and
-        # print corresponding statement
+
+        # If attribute found, print to console
         final = []
         if doc_dict[attribute] != "":
             final.append(doc_dict[attribute])
             print(final[0])
         else:
-            print(f"The movie", title, "has no awards.")
+            print(f"The movie", title, "has no", attribute)
 
-
-
-    # if not docs:
-    #     print(f"No awards for the movie: ", list[0])
-    # else:
-    #     self.print_docs(docs)
-
-
+    # Takes in a collection of documents and prints them to the console
     def print_docs(self, docs):
         if not docs:
             print("Sorry, no movies found")
         for doc in docs:
-            #docs.remove(doc)
             doc_dict = self.format_dict(doc.to_dict())
             print(f"{doc_dict}")
 
+    # Takes in a dictionary and returns it as a formatted string
     def format_dict(self, source):
         mystr = ("Title: " + source["name"] + ", Director: " + source["director"] + ", Year: " + str(source["year"])
                  + ", Rating: " + str(source["rating"]) + ", Genre: " + source["genre"] + ", Duration: "
