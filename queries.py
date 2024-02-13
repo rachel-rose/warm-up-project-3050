@@ -2,7 +2,7 @@ from google.cloud.firestore_v1.base_query import FieldFilter
 from authenticate import db_connection
 import json
 import hashlib
-
+from parserHome import print_help
 
 class Movie:
     # Initializes a Movie object with the given parameters
@@ -182,3 +182,14 @@ class Work:
 
         return mystr
 
+
+    # function that checks if certain tokens are being passed in with strings
+    # tokens that don't accept strings: rating, duration, year
+    # example rating == "8.2" return a bad output
+    def check_token(self, list):
+        for i in range(len(list)):
+            if list[i][0] == 'year' or 'rating' or ' duration':
+                if isinstance(list[i][2], str):
+                    # return bool
+                    return False
+        return True
