@@ -2,6 +2,7 @@ from google.cloud.firestore_v1.base_query import FieldFilter
 from authenticate import db_connection
 import json
 import hashlib
+from parserHome import print_help
 
 class Movie:
     # Initializes a Movie object with the given parameters

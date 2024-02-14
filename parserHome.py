@@ -1,8 +1,10 @@
 from pyparsing import Word, alphas, nums, alphanums, Literal, QuotedString
 from authenticate import db_connection
+from queries import Work
 
 # Global variable
 keep_running = True
+query_machine = Work()
 
 def parse_message(input_string):
     # Ways to compare values for a given token
@@ -11,10 +13,10 @@ def parse_message(input_string):
     # Acceptible queries
     # example_query = Word(alphas) + comparisons + Word(alphanums + '"')
     example_query = Word(alphas) + comparisons + value
-    example_and_compound_query = Word(alphas) + comparisons + Word(alphanums + '"') + Literal("and") + Word(alphas) + comparisons + Word(alphanums + '"')
-    example_or_compound_query = Word(alphas) + comparisons + Word(alphanums + '"') + Literal("or") + Word(alphas) + comparisons + Word(alphanums + '"')
-    example_and_double_compound_query = example_and_compound_query + Literal("and") + Word(alphas) + comparisons + Word(alphanums + '"')
-    example_or_double_compound_query = example_or_compound_query + Literal("or") + Word(alphas) + comparisons + Word(alphanums + '"')
+    example_and_compound_query = Word(alphas) + comparisons + value + Literal("and") + Word(alphas) + comparisons + value
+    example_or_compound_query = Word(alphas) + comparisons + value + Literal("or") + Word(alphas) + comparisons + value
+    example_and_double_compound_query = example_and_compound_query + Literal("and") + Word(alphas) + comparisons + value
+    example_or_double_compound_query = example_or_compound_query + Literal("or") + Word(alphas) + comparisons + value
 
     # Expected query format
     query = example_query ^ example_and_compound_query ^ example_or_compound_query ^ example_and_double_compound_query ^ example_or_double_compound_query ^ Literal("help") ^ Literal("quit")
@@ -37,14 +39,17 @@ def parse_message(input_string):
             if(input_valid_token(results[0])):
                 # Check if the value field is numeric
                 results[2] = is_it_a_num(results[2])
-                print(type(results[2]))
                 # Check if it is an 'of' query
                 if(results[1] == "of"):
+                    query_array = [results[0], results[2]]
                     # Call the of query function
-                    print("of query")
+                    query_machine.of_query(query_array)
+
+                    #print("of query")
                 else:
+                    query_array = [[results[0], results[1], results[2]]]
                     # Call query
-                    print("success")
+                    query_machine.and_query(query_array)
             else:
                 # Throw exception
                 print_help()
@@ -52,8 +57,8 @@ def parse_message(input_string):
         # Compound query commands
         elif(query_size == 7):
             # Check if the token is valid at results[0], results[4]
-            if(input_valid_token(results[0] and input_valid_token(results[4]))):
-            
+            if(input_valid_token(results[0]) and input_valid_token(results[4])):            
+                
                 # Check if the value field is numeric at results[2], results[6]
                 results[2] = is_it_a_num(results[2])
                 results[6] = is_it_a_num(results[6])
@@ -61,13 +66,15 @@ def parse_message(input_string):
                 # Check if it is an 'of' query
                 if(results[1] == "of" or results[5] == "of"):
                     # Throw exception
-                    print("No compound 'of' queries ")
+                    print("No compound 'of' queries. Type 'help' for more information.")
                 elif(results[3] == 'or'):
+                    query_array = [[results[0], results[1], results[2]], [results[4], results[5], results[6]]]
                     # Call 'or' query
-                    print("or query")
+                    query_machine.or_query(query_array)
                 else:
+                    query_array = [[results[0], results[1], results[2]], [results[4], results[5], results[6]]]
                     # Call normal query
-                    print("success")
+                    query_machine.and_query(query_array)
             else:
                 # Throw exception
                 print_help()
@@ -75,7 +82,7 @@ def parse_message(input_string):
         # Double compound query commands
         else:
             # Check if the token is valid at results[0], results[4], results[8]
-            if(input_valid_token(results[0]) and input_valid_token(results[4] and input_valid_token(results[8]))):
+            if(input_valid_token(results[0]) and input_valid_token(results[4]) and input_valid_token(results[8])):
                
                 # Check if the value field is numeric at results[2], results[6], results[10]
                 results[2] = is_it_a_num(results[2])
@@ -85,13 +92,15 @@ def parse_message(input_string):
                 # Check if it is an 'of' query
                 if(results[1] == "of" or results[5] == "of" or results[9]):
                     # Throw exception
-                    print("No compound 'of' queries ")
+                    print("No compound 'of' queries. Type 'help' for more information.")
                 elif(results[3] == 'or'):
+                    query_array = [[results[0], results[1], results[2]], [results[4],results[5],results[6]], [results[7], results[8], results[9]]]
                     # Call 'or' query
-                    print("or query")
+                    query_machine.or_query(query_array)
                 else:
+                    query_array = [[results[0], results[1], results[2]], [results[4],results[5],results[6]], [results[7], results[8], results[9]]]
                     # Call normal query
-                    print("success")
+                    query_machine.and_query(query_array)
             else:
                 # Throw exception
                 print_help()
@@ -131,7 +140,7 @@ def input_valid_token(input_str):
 
 def main():
     # Call admin file with json file name
-    db_connection()
+    #db_connection()
     
     while(keep_running):
         user_query = input("Enter a query string in the format of 'token comparison value' ")
