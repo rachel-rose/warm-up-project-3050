@@ -1,3 +1,5 @@
+Presentation: https://docs.google.com/presentation/d/1zQa-DC8zkzIkw1l-kNDZYIt7j_Es49RBsUYdG3j7AwY/edit#slide=id.g2b93c8671e8_2_0
+
 ## warm-up-project-3050
 # Deliverable 2 (Description of Query Language)
 What do we want the user to be able to search by?
