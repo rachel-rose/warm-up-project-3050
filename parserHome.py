@@ -90,15 +90,15 @@ def parse_message(input_string):
                 results[10] = is_it_a_num(results[10])
 
                 # Check if it is an 'of' query
-                if(results[1] == "of" or results[5] == "of" or results[9]):
+                if(results[1] == "of" or results[5] == "of" or results[9] == "of"):
                     # Throw exception
                     print("No compound 'of' queries. Type 'help' for more information.")
                 elif(results[3] == 'or'):
-                    query_array = [[results[0], results[1], results[2]], [results[4],results[5],results[6]], [results[7], results[8], results[9]]]
+                    query_array = [[results[0], results[1], results[2]], [results[4],results[5],results[6]], [results[8], results[9], results[10]]]
                     # Call 'or' query
                     query_machine.or_query(query_array)
                 else:
-                    query_array = [[results[0], results[1], results[2]], [results[4],results[5],results[6]], [results[7], results[8], results[9]]]
+                    query_array = [[results[0], results[1], results[2]], [results[4],results[5],results[6]], [results[8], results[9], results[10]]]
                     # Call normal query
                     query_machine.and_query(query_array)
             else:
@@ -114,8 +114,9 @@ def print_help():
 Comparison: >, <, ==, >=, <=, of
 Value:  “The Fast and the Furious”\n
 Common formatting errors to avoid: 
-\t- The \"of\" keyword should only be used proceding a specific movie name. ex: awards of \"movie name\" and cannot be a compound query\n
-\t- You cannot put \"and\" and \"or\" in the same query\n
+\t- The \"of\" keyword should only be used proceding a specific movie name. ex: awards of \"movie name\" and cannot be a compound query
+\t- You cannot put \"and\" and \"or\" in the same query
+\t- You cannot combine more than 3 queries with 'and' or 'or'
 \t- Tokens (category names) should not be capitalized or in quotes 
 \t- When searching by values (a specific movie name, genre, etc..), it must be in double quotation marks 
 \t- Integers and floats do not have to be in quotation marks\n\n************************************************\n************************************************\n""") 
@@ -140,6 +141,7 @@ def input_valid_token(input_str):
 
 def main():
     # Call admin file with json file name
+    # TODO: Do we call authentication from parser or query engine?
     #db_connection()
     
     while(keep_running):
