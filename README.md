@@ -10,16 +10,7 @@ Duration
 Recommended
 If a given movie received awards
 
-Comparison Keywords:
->
-<
-==
->=
-<=
-of
-
-and
-or
+Comparison Keywords: >, <, ==, >=, <=, of, and, or
 
 Expected tokens for the parser language
 year
