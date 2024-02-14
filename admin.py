@@ -1,5 +1,4 @@
 import sys
-import json
 from queries import Work
 
 if __name__ == "__main__":
