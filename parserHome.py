@@ -119,7 +119,7 @@ def is_it_a_num(input_str):
             is_num= False
     if is_num == True:
         input_str = float(input_str)
-     return input_str
+    return input_str
 
 def input_valid_token(input_str):
     #tokens, comparisons, values

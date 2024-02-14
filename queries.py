@@ -2,7 +2,6 @@ from google.cloud.firestore_v1.base_query import FieldFilter
 from authenticate import db_connection
 import json
 import hashlib
-from parserHome import print_help
 
 class Movie:
     # Initializes a Movie object with the given parameters
@@ -89,29 +88,30 @@ class Work:
     # The or_query function takes in a list of up to three token, comparison, value groups and
     # prints each document that satisfies ANY of the given requirements
     def or_query(self, list):
-        for i in range(len(list)):
-            docs = self.query(list[i][0], list[i][1], list[i][2])
-            if not docs:
-                output = "Sorry, no movies found with "
-                #for i in range(len(list)):
-                    #output += item[0] + " " + item[1] + " " + item[2]
-                    #if
-                    #output += " or "
-                print(output)
-            else:
-                for doc in docs:
-                    # Remove duplicate documents
-                    docs.remove(doc)
-                    doc_dict = doc.to_dict()
+        if not self.check_token(list):
+            print("Invalid query. Please type \'help\' for more information.")
+        else:
+            for i in range(len(list)):
+                docs = self.query(list[i][0], list[i][1], list[i][2])
+                if not docs:
+                    output = "Sorry, no movies found with "
+                    # for j in range(len(list)):
+                    output += str(list[i][0]) + " " + str(list[i][1]) + " " + str(list[i][2])
+                    print(output)
+                else:
+                    for doc in docs:
+                        # Remove duplicate documents
+                        docs.remove(doc)
+                        doc_dict = doc.to_dict()
 
-                    # print(doc_dict["id"])
-                    print(f"{doc_dict}")
+                        # print(doc_dict["id"])
+                        print(self.format_dict(doc_dict))
 
     # The and_query function takes in a list of up to three token, comparison, value groups and
     # prints each document that satisfies ALL of the given requirements
     def and_query(self, list):
         if not self.check_token(list):
-            print_help()
+            print("Invalid query. Please type \'help\' for more information.")
         else:
             # One query given
             if (len(list)) == 1:
@@ -191,8 +191,7 @@ class Work:
     # example rating == "8.2" return a bad output
     def check_token(self, list):
         for i in range(len(list)):
-            if list[i][0] == 'year' or 'rating' or 'duration':
+            if list[i][0] == 'year' or list[i][0] == 'rating' or list[i][0] == 'duration':
                 if isinstance(list[i][2], str):
-                    # return bool
                     return False
         return True

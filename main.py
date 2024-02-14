@@ -5,7 +5,7 @@ def main():
     q = Work()
     #q.load_data("warm-up-project-3050/movies-data.json") # User will give this as command line arg
 
-    q.and_query([["rating", "==", "No"]])
+    q.or_query([["year", "==", 2000], ["name", "==", "Dogs"]])
     print("______")
     #q.or_query([["name", "==", "dogs"], ["year", "==", "dogs"]])
     print("______")
