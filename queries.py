@@ -109,6 +109,8 @@ class Work:
     # The and_query function takes in a list of up to three token, comparison, value groups and
     # prints each document that satisfies ALL of the given requirements
     def and_query(self, list):
+        check = True
+        check = self.check_token(list)
         # One query given
         if (len(list)) == 1:
             docs = self.query(list[0][0], list[0][1], list[0][2])
@@ -191,4 +193,3 @@ class Work:
                 if isinstance(list[i][2], str):
                     # return bool
                     return False
-        return True
