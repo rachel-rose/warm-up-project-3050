@@ -1,5 +1,4 @@
 from pyparsing import Word, alphas, nums, alphanums, Literal, QuotedString
-from authenticate import db_connection
 from queries import Work
 
 # Global variables
