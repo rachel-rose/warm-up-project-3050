@@ -3,6 +3,7 @@ from authenticate import db_connection
 import json
 import hashlib
 
+
 class Movie:
     # Initializes a Movie object with the given parameters
     def __init__(self, name, year, director, rating, genre, recommend, duration, awards):
@@ -88,6 +89,7 @@ class Work:
     # The or_query function takes in a list of up to three token, comparison, value groups and
     # prints each document that satisfies ANY of the given requirements
     def or_query(self, list):
+        final = []
         if not self.check_token(list):
             print("Invalid query. Please type \'help\' for more information.")
         else:
@@ -101,11 +103,10 @@ class Work:
                 else:
                     for doc in docs:
                         # Remove duplicate documents
-                        docs.remove(doc)
-                        doc_dict = doc.to_dict()
-
-                        # print(doc_dict["id"])
-                        print(self.format_dict(doc_dict))
+                        if doc.to_dict() not in final:
+                            final.append(doc.to_dict())
+        for item in final:
+            print(self.format_dict(item))
 
     # The and_query function takes in a list of up to three token, comparison, value groups and
     # prints each document that satisfies ALL of the given requirements
@@ -185,10 +186,9 @@ class Work:
 
         return mystr
 
-
-    # function that checks if certain tokens are being passed in with strings
-    # tokens that don't accept strings: rating, duration, year
-    # example rating == "8.2" return a bad output
+    # Checks if certain tokens are being passed in with strings
+    # Tokens that don't accept strings: rating, duration, year
+    # Example rating == "8.2" return a bad output
     def check_token(self, list):
         for i in range(len(list)):
             if list[i][0] == 'year' or list[i][0] == 'rating' or list[i][0] == 'duration':
