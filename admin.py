@@ -7,10 +7,3 @@ if __name__ == "__main__":
     work.clear_data()
     work.load_data(filename)
     print("File loaded successfully")
-
-
-    #
-    #
-    # work = Work()
-    # work.clear_data()
-    # work.load_data(filename)
