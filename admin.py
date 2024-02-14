@@ -14,14 +14,3 @@ if __name__ == "__main__":
         work.clear_data()
         work.load_data(final_filename)
         print("File loaded successfully")
-
-    else:
-        print("File name not valid")
-
-
-
-    #
-    #
-    # work = Work()
-    # work.clear_data()
-    # work.load_data(filename)
