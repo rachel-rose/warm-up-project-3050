@@ -123,7 +123,9 @@ Common formatting errors to avoid:
 \t- You cannot combine more than 3 queries with 'and' or 'or'
 \t- Tokens (category names) should not be capitalized or in quotes 
 \t- When searching by values (a specific movie name, genre, etc..), it must be in double quotation marks 
-\t- Integers and floats do not have to be in quotation marks\n\n************************************************\n************************************************\n""") 
+\t- Integers and floats do not have to be in quotation marks
+          
+When you are done type 'quit' to end the program\n\n************************************************\n************************************************\n""") 
 
 # This is_it_a_num method takes in an input string and checks if it is numeric or a string.
 # If it is numeric it is casted to a float and returned, else it is returned as is.
@@ -152,6 +154,7 @@ def main():
     # Welcome the user to the database
     print("Hello and welcome to our movies database query interface.")
     print("You can query the name, year, director, genre, rating, recommendation, duration or awards of your favorite movie!")
+    print("Type 'help' for more information about queries")
     while(keep_running):
         user_query = input("Enter a query string in the format of 'token comparison value' ")
         parse_message(user_query)
